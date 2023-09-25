@@ -37,14 +37,14 @@ def fetch_many():
         logging.basicConfig(level=logging.ERROR)
 
     if args.from_file:
-        part_numbers = list(map(str.strip, open(args.from_file, "r").splitlines()))
+        part_numbers = list(map(str.strip, open(args.from_file, "r").readlines()))
     else:
         part_numbers = args.part_numbers
 
     if len(part_numbers) == 0:
         return
 
-    logging.debug(f"Fetching {len(part_numbers)} parts")
+    logging.debug(f"Fetching {len(part_numbers)} parts: {part_numbers}")
 
     for part_number in part_numbers:
         td.fetch_documents_for_part(part_number, args.data_dir)
